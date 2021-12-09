@@ -1,0 +1,36 @@
+GET http://localhost:8060?param=ru
+
+###
+
+GET http://localhost:8060/hhh?param=ru
+
+###
+
+GET http://localhost:8060/authors?surname[]=Паланик
+
+###
+
+GET http://localhost:8060/books?author_surname[]=fdf
+
+###
+
+GET http://localhost:8060/books?title[]=Мечтают ли андроиды об электроовцах?
+
+###
+
+GET http://localhost:8060/authors?surname=Паланик
+
+###
+
+GET http://localhost:8060/books?author_surname=Дик
+
+###
+
+GET http://localhost:8060/books?title=Мечтают ли андроиды об электроовцах?
+
+###
+
+GET http://localhost:8060/books?title=Логос
+
+###
+
