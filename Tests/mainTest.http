@@ -1,0 +1,195 @@
+### Тестирование поиска журнала по названию
+GET http://localhost:8060/books?title=Логос
+
+> {%
+ client.test("Тестрирование поиска журнала по названию", function() {
+     client.assert(response.status === 200, "Был получен код '" + response.status + "', ожидалось 200.");
+     client.assert(response.contentType.mimeType === "application/json", "Было получено '" +
+         response.contentType.mimeType + "', ожидалось 'application/json'.");
+     client.assert(response.body.hasOwnProperty("length") && response.body.length === 1,
+         "Ожидался 1 элемент. " +
+         "Было получено " + response.body.length + " элементов");
+     client.assert(response.body[0]["id"] === 17, "Ожидался id журнала '17'. Было получено '" +
+         response.body[0]["id"] + "'.");
+     client.assert(response.body[0]["title"] === "Логос",
+         "Ожидалось название журнала 'Логос'. Было получено '" + response.body[0]["title"] + "'");
+     client.assert(response.body[0]["year"] === 2020, "Ожидался год журнала " +
+         "'2020'. Было получено '" + response.body[0]["year"] + "'.");
+     client.assert(response.body[0]["author"] === null, "Ожидалась информация об авторе 'null'. " +
+         "Было получено '" + response.body[0]["author"] + "'.");
+     client.assert(response.body[0]["number"] === 1, "Ожидалась информация о number '1'. " +
+         "Было получено '" + response.body[0]["author"] + "'.");
+
+ });
+ %}
+
+### Тестирование поиска книг по названию
+GET http://localhost:8060/books?title=Мечтают ли андроиды об электроовцах?
+
+> {%
+ client.test("Тестрирование поиска книги по названию", function() {
+     client.assert(response.status === 200, "Был получен код '" + response.status + "', ожидалось 200.");
+     client.assert(response.contentType.mimeType === "application/json", "Было получено '" +
+         response.contentType.mimeType + "', ожидалось 'application/json'.");
+     client.assert(response.body.hasOwnProperty("length") && response.body.length === 1,
+         "Ожидался 1 элемент. " +
+         "Было получено " + response.body.length + " элементов");
+     client.assert(response.body[0]["id"] === 10, "Ожидался id книги '10'. Было получено '" +
+         response.body[0]["id"] + "'.");
+     client.assert(response.body[0]["title"] === "Мечтают ли андроиды об электроовцах?",
+         "Ожидалось название книги " +
+         "'Мечтают ли андроиды об электроовцах?'. Было получено '" + response.body[0]["title"] + "'");
+     client.assert(response.body[0]["year"] === 1966, "Ожидался год издания книги " +
+         "'1966'. Было получено '" + response.body[0]["year"] + "'.");
+     client.assert(response.body[0]["author"] !== undefined, "Ожидалась информация об авторе. " +
+         "Было получено '" + response.body[0]["author"] + "'.");
+     client.assert(response.body[0]["author"]["id"] === 5, "Ожидался id '5'. Было получено '" +
+         response.body[0]["author"]["id"] + "'.");
+     client.assert(response.body[0]["author"]["name"] === "Филип", "Ожидалось name 'Филип'. Было получено '"
+         + response.body[0]["author"]["name"] + "'.");
+     client.assert(response.body[0]["author"]["surname"] === "Дик", "Ожидалось surname 'Дик'. " +
+         "Было получено '" + response.body[0]["author"]["surname"] + "'.");
+     client.assert(response.body[0]["author"]["birthday"] === "16.12.1928", "Ожидалось birthday " +
+         "'16.12.1928'. Было получено '" + response.body[0]["author"]["birthday"] + "'.");
+     client.assert(response.body[0]["author"]["country"] === "us", "Ожидалось country 'us'. " +
+         "Было получено '" + response.body[0]["author"]["us"] + "'.");
+ });
+ %}
+
+### Тестирование поиска книги по фамилии автора
+// Когда мы ищем не по своему параметру, пишем новое поле
+GET http://localhost:8060/books?author_surname=Дик
+
+> {%
+  client.test("Тестирование поиска книги по фамилии автора", function() {
+     client.assert(response.status === 200, "Был получен код '" + response.status + "', ожидалось 200.");
+     client.assert(response.contentType.mimeType === "application/json", "Было получено '" +
+         response.contentType.mimeType + "', ожидалось 'application/json'.");
+     client.assert(response.body.hasOwnProperty("length") && response.body.length === 1,
+         "Ожидался 1 элемент. " +
+         "Было получено " + response.body.length + " элементов"); // mb error, length
+     client.assert(response.body[0]["id"] === 10, "Ожидался id книги '10'. Было получено '" +
+         response.body[0]["id"] + "'.");
+     client.assert(response.body[0]["title"] === "Мечтают ли андроиды об электроовцах?",
+         "Ожидалось название книги " +
+         "'Мечтают ли андроиды об электроовцах?'. Было получено '" + response.body[0]["title"] + "'");
+     client.assert(response.body[0]["year"] === 1966, "Ожидался год издания книги " +
+         "'1966'. Было получено '" + response.body[0]["year"] + "'.");
+     client.assert(response.body[0]["author"] !== undefined, "Ожидалась информация об авторе. " +
+         "Было получено '" + response.body[0]["author"] + "'.");
+     client.assert(response.body[0]["author"]["id"] === 5, "Ожидался id '5'. Было получено '" +
+         response.body[0]["author"]["id"] + "'.");
+     client.assert(response.body[0]["author"]["name"] === "Филип", "Ожидалось name 'Филип'. Было получено '"
+         + response.body[0]["author"]["name"] + "'.");
+     client.assert(response.body[0]["author"]["surname"] === "Дик", "Ожидалось surname 'Дик'. " +
+         "Было получено '" + response.body[0]["author"]["surname"] + "'.");
+     client.assert(response.body[0]["author"]["birthday"] === "16.12.1928", "Ожидалось birthday " +
+         "'16.12.1928'. Было получено '" + response.body[0]["author"]["birthday"] + "'.");
+     client.assert(response.body[0]["author"]["country"] === "us", "Ожидалось country 'us'. " +
+         "Было получено '" + response.body[0]["author"]["us"] + "'.");
+ });
+ %}
+
+### Тестирование поиска автора по фамилии
+GET http://localhost:8060/authors?surname=Паланик
+
+> {%
+ client.test("Тестирование поиска автора по фамилии", function() {
+     client.assert(response.status === 200, "Был получен код '" + response.status + "', ожидалось 200.");
+     client.assert(response.contentType.mimeType === "application/json", "Было получено '" +
+         response.contentType.mimeType + "', ожидалось 'application/json'.");
+     client.assert(response.body.hasOwnProperty("length") && response.body.length === 1, "Ожидался 1 элемент. " +
+         "Было получено " + response.body.length + " элементов.");
+     client.assert(response.body[0]["id"] === 1, "Ожидался id автора '1'. Было получено '" +
+         response.body[0]["id"] + "'.");
+     client.assert(response.body[0]["name"] === "Чак", "Ожидалось имя автора 'Чак'. Было получено '" +
+         response.body[0]["name"] + "'.");
+     client.assert(response.body[0]["surname"] === "Паланик", "Ожидалась фамилия автора 'Паланик'. " +
+         "Было получено '" +
+         response.body[0]["surname"] + "'.");
+     client.assert(response.body[0]["birthday"] === "21.02.1962", "Ожидалась дата рождения '22.02.1962'. " +
+         "Было получено '" +
+         response.body[0]["birthday"] + "'.");
+     client.assert(response.body[0]["country"] === "us", "Ожидалась страна 'us'. Было получено '" +
+         response.body[0]["country"] + "'.");
+ });
+ %}
+
+### Тестирование ситуации, когда передали некорректное имя книги для поиска книги
+GET http://localhost:8060/books?title[]=Мечтают ли андроиды об электроовцах?
+
+> {%
+client.test("Тестирование ситуации, когда передали некорректное имя книги для поиска книги", function (){
+    client.assert(response.status === 500, "Был получен код '" + response.status + "', ожидалось 500.");
+    client.assert(response.contentType.mimeType === "application/json", "Было получено '" +
+         response.contentType.mimeType + "', ожидалось 'application/json'.");
+    client.assert(response.body["message"] === "incorrect book title", "Ожидалось 'incorrect book title'. " +
+        "Было получено '" + response.body["message"] + "'.");
+    client.assert(response.body["status"] === "fail", "Ожидался статус 'fail'. Было получено '" +
+        response.body["status"] + "'.");
+});
+ %}
+
+### Тестирование ситуации, когда передали некорректное имя автора для поиска книги
+GET http://localhost:8060/books?author_surname[]=fdf
+
+> {%
+client.test("Тестирование ситуации, когда передали некорректное имя автора для поиска книги", function (){
+    client.assert(response.status === 500, "Был получен код '" + response.status + "', ожидалось 500.");
+    client.assert(response.contentType.mimeType === "application/json", "Было получено '" +
+         response.contentType.mimeType + "', ожидалось 'application/json'.");
+    client.assert(response.body["message"] === "incorrect author surname", "Ожидалось 'incorrect author surname'. " +
+        "Было получено '" + response.body["message"] + "'.");
+    client.assert(response.body["status"] === "fail", "Ожидался статус 'fail'. Было получено '" +
+        response.body["status"] + "'.");
+});
+ %}
+
+### Тестирование ситуации, когда передали некорректную фамилию для поиска автора
+GET http://localhost:8060/authors?surname[]=Паланик
+
+> {%
+client.test("Тестирование ситуации, когда передали некорректную фамилию для поиска автора", function (){
+    client.assert(response.status === 500, "Был получен код '" + response.status + "', ожидалось 500.");
+    client.assert(response.contentType.mimeType === "application/json", "Было получено '" +
+         response.contentType.mimeType + "', ожидалось 'application/json'.");
+    client.assert(response.body["message"] === "incorrect author surname", "Ожидалось 'incorrect author surname'. " +
+        "Было получено '" + response.body["message"] + "'.");
+    client.assert(response.body["status"] === "fail", "Ожидался статус 'fail'. Было получено '" +
+        response.body["status"] + "'.");
+});
+ %}
+
+
+
+### Тестирование неподдерживаемого приложением url
+GET http://localhost:8060/hhh?param=ru
+
+> {%
+client.test("Тестирование неподдерживаемого приложением url", function (){
+    client.assert(response.status === 404, "Был получен код '" + response.status + "', ожидалось 404.");
+    client.assert(response.contentType.mimeType === "application/json", "Было получено '" +
+        response.contentType.mimeType + "', ожидалось 'application/json'.");
+    client.assert(response.body["message"] === "unsupported request", "Ожидалось 'unsupported request'. " +
+        "Было получено '" + response.body["message"] + "'.");
+    client.assert(response.body["status"] === "fail", "Ожидался статус 'fail'. Было получено '" +
+        response.body["status"] + "'.");
+});
+ %}
+
+
+### Тестирование запроса без path
+GET http://localhost:8060/?param=ru
+
+> {%
+client.test("Тестирование запроса без path", function (){
+    client.assert(response.status === 404, "Был получен код '" + response.status + "', ожидалось 404.");
+    client.assert(response.contentType.mimeType === "application/json", "Было получено '" +
+         response.contentType.mimeType + "', ожидалось 'application/json'.");
+    client.assert(response.body["message"] === "unsupported request", "Ожидалось 'unsupported request'. " +
+        "Было получено '" + response.body["message"] + "'.");
+    client.assert(response.body["status"] === "fail", "Ожидался статус 'fail'. Было получено '" +
+        response.body["status"] + "'.");
+});
+ %}
+

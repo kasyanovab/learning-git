@@ -1,0 +1,43 @@
+[
+  {
+    "id": 1,
+    "name": "Чак",
+    "surname": "Паланик",
+    "birthday": "21.02.1962",
+    "country": "us"
+  },
+  {
+    "id": 2,
+    "name": "Илья",
+    "surname": "Кормильцев",
+    "birthday": "26.09.1959",
+    "country": "us"
+  },
+  {
+    "id": 3,
+    "name": "Брет",
+    "surname": "Эллис",
+    "birthday": "07.03.1964",
+    "country": "us"
+  },
+  {
+    "id": 4,
+    "name": "Лев",
+    "surname": "Толстой",
+    "birthday": "28.08.1828",
+    "country": "ru"
+  },
+  {
+    "id": 5,
+    "name": "Филип",
+    "surname": "Дик",
+    "country": "us"
+  },
+  {
+    "id": 6,
+    "name": "Виктор",
+    "surname": "Пелевин",
+    "birthday": "22.11.1962",
+    "country": "ru"
+  }
+]

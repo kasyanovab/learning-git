@@ -1,0 +1,80 @@
+[
+  {
+    "id": 1,
+    "title": "Бойцовский клуб",
+    "year": 1996,
+    "author_id": 1
+  },
+  {
+    "id": 2,
+    "title": "Снафф",
+    "year": 2008,
+    "author_id": 1
+  },
+  {
+    "id": 3,
+    "title": "Проклятые",
+    "year": 2011,
+    "author_id": 1
+  },
+  {
+    "id": 4,
+    "title": "Никто из ниоткуда. Сценарий, стихи, рассказы",
+    "year": 2006,
+    "author_id": 2
+  },
+  {
+    "id": 5,
+    "title": "Скованные одной цепью. Стихи",
+    "year": 1990,
+    "author_id": 2
+  },
+  {
+    "id": 6,
+    "title": "Glamorama",
+    "year": 1998,
+    "author_id": 3
+  },
+  {
+    "id": 7,
+    "title": "The Rules of Attraction",
+    "year": 1987,
+    "author_id": 3
+  },
+  {
+    "id": 8,
+    "title": "Крейцерова соната",
+    "year": 1891,
+    "author_id": 4
+  },
+  {
+    "id": 9,
+    "title": "Карма",
+    "year": 1894,
+    "author_id": 4
+  },
+  {
+    "id": 10,
+    "title": "Мечтают ли андроиды об электроовцах?",
+    "year": 1966,
+    "author_id": 5
+  },
+  {
+    "id": 11,
+    "title": "S.N.U.F.F.",
+    "year": 2011,
+    "author_id": 6
+  },
+  {
+    "id": 12,
+    "title": "iPhuck 10",
+    "year": 2017,
+    "author_id": 6
+  },
+  {
+    "id": 13,
+    "title": "Чапаев и Пустота",
+    "year": 1996,
+    "author_id": 6
+  }
+]

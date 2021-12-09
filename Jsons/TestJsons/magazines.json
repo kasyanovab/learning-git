@@ -1,0 +1,44 @@
+[
+  {
+    "id": 14,
+    "title": "Esquire",
+    "year": 2020,
+    "author_id": null,
+    "number": 1
+  },
+  {
+    "id": 15,
+    "title": "Esquire",
+    "year": 2020,
+    "author_id": null,
+    "number": 2
+  },
+  {
+    "id": 16,
+    "title": "GQ",
+    "year": 2020,
+    "author_id": null,
+    "number": 1
+  },
+  {
+    "id": 17,
+    "title": "Логос",
+    "year": 2020,
+    "author_id": null,
+    "number": 1
+  },
+  {
+    "id": 18,
+    "title": "National Geographic Magazine",
+    "year": 2020,
+    "author_id": null,
+    "number": 7
+  },
+  {
+    "id": 19,
+    "title": "Rolling Stone",
+    "year": 2017,
+    "author_id": null,
+    "number": 4
+  }
+]
